@@ -1,10 +1,10 @@
 import React from 'react'
 import { LoginComp } from '../../components/LoginComp'
 
-export const Login = () => {
+export const Login = ({handleOnClick}) => {
   return (
    <>
-   <LoginComp />
+   <LoginComp handleOnClick={handleOnClick}/>
    </>
   )
 }
