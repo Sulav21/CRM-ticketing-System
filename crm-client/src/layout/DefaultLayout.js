@@ -5,7 +5,7 @@ import { Header } from "./Header";
 export const DefaultLayout = ({ children }) => {
   return (
   <div className="default-layout">
-    <div className="header">
+    <div className="header mb-2">
     <Header />
 
     </div>
