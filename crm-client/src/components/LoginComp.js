@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import { Container, Row, Col, Form,Button } from "react-bootstrap";
-import { toast } from "react-toastify";
 
 const initialData = {
     email:"",
@@ -36,7 +35,7 @@ export const LoginComp = ({handleOnClick}) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" onChange={handleOnChange} placeholder="Password" required />
+              <Form.Control type="password" name="password" onChange={handleOnChange} placeholder="Enter Password" required />
             </Form.Group>
       
             <Button variant="primary" type="submit">
