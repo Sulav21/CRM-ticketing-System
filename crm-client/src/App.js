@@ -3,12 +3,14 @@ import './App.css';
 import { DefaultLayout } from './layout/DefaultLayout';
 import { Dashboard } from './pages/dashboard/Dashboard';
 import { EntryPage } from './pages/entry/EntryPage';
+import { AddTicket } from './pages/new-ticket/AddTicket';
 
 const App=()=> {
   return (
     <DefaultLayout>
       {/* <EntryPage/> */}
-     <Dashboard />
+     {/* <Dashboard /> */}
+     <AddTicket className='mt-5'/>
     <ToastContainer />
     </DefaultLayout>
   );
