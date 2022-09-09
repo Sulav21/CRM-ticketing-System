@@ -9,7 +9,7 @@ export const EntryPage = () => {
     setShow(!show)
   }
   return (
-   <div className="bg-info entry-page">
+   <div className=" entry-page">
     <div className="jumbotron form-box">
       {show ? <Login handleOnClick={handleOnClick}/> : <ResetPassword handleOnClick={handleOnClick}/> }
     
