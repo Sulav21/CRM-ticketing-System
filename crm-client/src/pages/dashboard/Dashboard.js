@@ -2,6 +2,8 @@ import React from 'react'
 import { Container,Row,Col,Button, Breadcrumb } from 'react-bootstrap'
 import { TicketTable } from '../../ticket-table/TicketTable'
 import {BreadCrumbComp} from '../../components/breadcrumb/BreadCrumbComp'
+import tickets from '../../dummy-data/dummy-table.json'
+
 export const Dashboard = () => {
   return (
     <Container>
@@ -28,7 +30,7 @@ export const Dashboard = () => {
         </Row>
         <Row>
             <Col className='mb-2'>
-            <TicketTable/>
+            <TicketTable tickets={tickets}/>
             </Col>
         </Row>
     </Container>

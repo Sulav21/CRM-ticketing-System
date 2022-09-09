@@ -45,7 +45,7 @@ export const AddTicketForm = () => {
               </Col>
             </Form.Group>
       
-            <Button variant="info" type="submit" className='py-2'block>
+            <Button variant="info" type="submit" className='py-2 m-auto'>
               Submit
             </Button>
           </Form>
