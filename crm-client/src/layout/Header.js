@@ -14,7 +14,7 @@ export const Header = () => {
   return (
     <Navbar bg="info" className="fw-bold text-light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img src={logo} alt="" style={{ height: "40px", width: "40px" }} />{" "}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

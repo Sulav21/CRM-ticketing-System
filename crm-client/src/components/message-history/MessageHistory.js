@@ -4,7 +4,7 @@ import './messageHistory.css'
 export const MessageHistory = ({ msg }) => {
   return (
     <>
-      {!msg.length ? (
+      {!msg ? (
         <>
           <p className="text-center fw-bold">No message history</p> <hr />
         </>

@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { BreadCrumbComp } from "../../components/breadcrumb/BreadCrumbComp";
 import { MessageHistory } from "../../components/message-history/MessageHistory";
 import { UpdateTicket } from "../../components/update-ticket/UpdateTicket";
 import tickets from "../../dummy-data/dummy-table.json";
-const ticket = tickets[0];
 export const TicketPage = () => {
+  const { id } = useParams();
+  // const ticket = tickets[id];
+
   const [message, setMessage] = useState("");
+  const [ticket, setTicket] = useState('');
+
   const handleOnChange = (e) => {
     setMessage(e.target.value);
   };
-  useEffect(() => {}, [message]);
+
+  useEffect(() => {
+    for (let i = 0; i < tickets.length; i++) {
+      if (tickets[i].id == id) {
+        setTicket(tickets[i]);
+        continue;
+      }
+    }
+  }, [message]);
+ 
+
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +51,7 @@ export const TicketPage = () => {
       </Row>
       <Row className="mt-4">
         <Col>
-          <MessageHistory msg={ticket.history} />
+        <MessageHistory msg={ticket.history} />
         </Col>
       </Row>
 

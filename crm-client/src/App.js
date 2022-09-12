@@ -7,21 +7,51 @@ import { AddTicket } from "./pages/new-ticket/AddTicket";
 import { TicketList } from "./pages/ticket-listing/TicketList";
 import { TicketPage } from "./pages/ticket/TicketPage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { PrivateRoute } from "./components/private-route/PrivateRoute";
 const App = () => {
   return (
-    <Router>
-      <DefaultLayout>
-        <Routes>
-          <Route path="/" element={<EntryPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+    <>
+      <Router>
+       
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/" element={<EntryPage />} />
+            <Route
+              path="/add-ticket"
+              element={
+                <PrivateRoute>
+                  <AddTicket className="mt-5" />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tickets"
+              element={
+                <PrivateRoute>
+                  <TicketList />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/ticket/:id"
+              element={
+                <PrivateRoute>
+                  <TicketPage />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
 
-          <Route path="/add-ticket" element={<AddTicket className="mt-5" />} />
-          <Route path="/tickets" element={<TicketList />} />
-          <Route path="/ticket/:id" element={<TicketPage />} />
-        </Routes>
         <ToastContainer />
-      </DefaultLayout>
-    </Router>
+      </Router>
+    </>
   );
 };
 export default App;

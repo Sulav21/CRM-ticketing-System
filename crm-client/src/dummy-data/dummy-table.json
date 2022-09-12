@@ -27,14 +27,32 @@
         "id":2,
         "subject":"hey issue with the ssl",
         "status": "active",
-        "date":"2020-09-21"
+        "date":"2020-09-21",
+        "history":[
+            {
+                "date":"2020-09-21",
+                "message":"sdfsdfsad",
+                "messageBy":"Client"
+            },
+            {
+                "date":"2020-09-21",
+                "message":"sdfsdfsad",
+                "messageBy":"Operator"
+            },
+            {
+                "date":"2020-09-21",
+                "message":"sdfsdfsad",
+                "messageBy":"Client"
+            }
+        ]
     },
     
     {
         "id":3,
         "subject":"mate issue with the ssl",
         "status": "active",
-        "date":"2020-09-21"
+        "date":"2020-09-21",
+        "history":[]
     },
     {
         "id":4,
