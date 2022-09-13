@@ -10,6 +10,15 @@ Content-Type: application/json
     "company":"XYZ Company",
     "address":"sdsadda",
     "phone":123456789,
-    "email":"sulav4@yahoo.com",
+    "email":"sulav5@yahoo.com",
     "password":"123456"
+}
+
+###
+POST http://localhost:8000/v1/user/login
+Content-Type: application/json
+
+{
+    "email":"sulav5@yahoo.com",
+    "password":"1234567"
 }

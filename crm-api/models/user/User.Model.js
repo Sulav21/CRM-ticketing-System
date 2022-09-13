@@ -4,8 +4,8 @@ export const insertUser = userObj => {
 return userSchema(userObj).save()
 }
 
-export const getAllUsers=()=>{
-return userSchema.find()
+export const getAllUsers=(filter)=>{
+return userSchema.findOne(filter)
 }
 
 export const getUser=(filter)=>{
