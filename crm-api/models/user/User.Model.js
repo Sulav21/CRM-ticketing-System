@@ -13,5 +13,5 @@ export const getUser=(filter)=>{
 }
 
 export const updateUser=(filter,obj)=>{
-    return userSchema.findByIdAndUpdate(filter,obj,{new:true})
+    return userSchema.findOneAndUpdate(filter,obj,{new:true})
 }
