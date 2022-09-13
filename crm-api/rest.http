@@ -1,0 +1,15 @@
+###
+GET http://localhost:8000/v1/user
+
+###
+POST http://localhost:8000/v1/user
+Content-Type: application/json
+
+{
+    "name":"Sulav",
+    "company":"XYZ Company",
+    "address":"sdsadda",
+    "phone":123456789,
+    "email":"sulav4@yahoo.com",
+    "password":"123456"
+}

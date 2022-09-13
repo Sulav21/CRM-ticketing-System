@@ -1,6 +1,6 @@
 import express from "express";
 import cors from 'cors';
-// import "body-parser";
+// import bodyParser from "body-parser";
 import helmet from 'helmet';
 import morgan from 'morgan';
 import 'dotenv/config'
@@ -17,12 +17,21 @@ app.use(helmet())
 
 // Database Connection
 import {dbConnection} from './config/db.js'
-import bodyParser from "body-parser";
 dbConnection()
+
+// Routers
+// User Router
+import userRouter from './router/userRouter.js'
+app.use('/v1/user',userRouter)
+
+// Ticket router
+import ticketRouter from './router/ticketRouter.js'
+app.use('/v1/ticket',ticketRouter)
+
 
 // Global error handling
 
-app.use((err,req,res)=>{
+app.use((err,req,res,next)=>{
     console.log(err)
         res.status(err.status || 404)
         res.json({
