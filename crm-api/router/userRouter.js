@@ -1,7 +1,9 @@
 import express from "express";
 import { comparePassword, PasswordHash } from "../helpers/bcryptHelper.js";
 import { createAccessJWT,createJWTS,createRefreshJWT} from "../helpers/jwt.helper.js";
+import { OtpGenerator } from "../helpers/randomGenerator.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { insertSession } from "../models/sessions/sessions.Model.js";
 import { getAllUsers, getUser, insertUser } from "../models/user/user.Model.js";
 
 const router = express.Router();
@@ -75,11 +77,28 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post('/reset-password', async(req,res,next)=>{
+ try {
   const {email} = req.body;
   const user  = await getAllUsers({email})
   if(user?._id){
-   res.json({user})
+   const obj = {
+    token: OtpGenerator(),
+    associate: email,
+    type:"Otp"
+   }
+  const result =  await insertSession(obj)
+  if(result?._id){
+    res.json({
+      status:"success",
+      message:"Please check your email for OTP"
+    })
+
   }
+  }
+  
+ } catch (error) {
+  next(error)
+ }
 })
 
 export default router;
