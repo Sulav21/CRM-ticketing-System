@@ -1,6 +1,11 @@
 import express from "express";
 import { comparePassword, PasswordHash } from "../helpers/bcryptHelper.js";
-import { createAccessJWT,createJWTS,createRefreshJWT} from "../helpers/jwt.helper.js";
+import { otpNotification } from "../helpers/emailHelper.js";
+import {
+  createAccessJWT,
+  createJWTS,
+  createRefreshJWT,
+} from "../helpers/jwt.helper.js";
 import { OtpGenerator } from "../helpers/randomGenerator.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { insertSession } from "../models/sessions/sessions.Model.js";
@@ -8,15 +13,15 @@ import { getAllUsers, getUser, insertUser } from "../models/user/user.Model.js";
 
 const router = express.Router();
 
-router.get('/',authMiddleware,(req,res,next)=>{
+router.get("/", authMiddleware, (req, res, next) => {
   try {
     res.json({
-      message:req.userInfo
-    })
+      message: req.userInfo,
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 router.post("/", async (req, res, next) => {
   try {
@@ -45,23 +50,21 @@ router.post("/", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
 
     const user = await getAllUsers({ email });
-    
+
     if (user?._id) {
-     
-   
       const comparePass = comparePassword(password, user.password);
       if (comparePass) {
-        const jwts = await createJWTS(user.email)
+        const jwts = await createJWTS(user.email);
         user.password = undefined;
         user.refreshJWT = undefined;
         res.json({
           status: "success",
           message: "Logged in successfully",
           user,
-          jwts
+          jwts,
         });
         return;
       }
@@ -76,29 +79,35 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.post('/reset-password', async(req,res,next)=>{
- try {
-  const {email} = req.body;
-  const user  = await getAllUsers({email})
-  if(user?._id){
-   const obj = {
-    token: OtpGenerator(),
-    associate: email,
-    type:"Otp"
-   }
-  const result =  await insertSession(obj)
-  if(result?._id){
+router.post("/reset-password", async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await getAllUsers({ email });
+    if (user?._id) {
+      const obj = {
+        token: OtpGenerator(),
+        associate: email,
+        type: "Otp",
+      };
+      const result = await insertSession(obj);
+      if (result?._id) {
+        res.json({
+          status: "success",
+          message: "Please check your email for OTP",
+        });
+      }
+      return otpNotification({
+        token: result.token,
+        email: email,
+      });
+    }
     res.json({
-      status:"success",
-      message:"Please check your email for OTP"
-    })
-
+      status: "error",
+      message: "Inavlid request",
+    });
+  } catch (error) {
+    next(error);
   }
-  }
-  
- } catch (error) {
-  next(error)
- }
-})
+});
 
 export default router;
