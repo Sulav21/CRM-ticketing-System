@@ -1,10 +1,20 @@
 import express from "express";
 import { comparePassword, PasswordHash } from "../helpers/bcryptHelper.js";
-import { createAccessJWT,createRefreshJWT} from "../helpers/jwt.helper.js";
+import { createAccessJWT,createJWTS,createRefreshJWT} from "../helpers/jwt.helper.js";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { getAllUsers, getUser, insertUser } from "../models/user/user.Model.js";
 
 const router = express.Router();
 
+router.get('/',authMiddleware,(req,res,next)=>{
+  try {
+    res.json({
+      message:req.userInfo
+    })
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post("/", async (req, res, next) => {
   try {
@@ -42,14 +52,14 @@ router.post("/login", async (req, res, next) => {
    
       const comparePass = comparePassword(password, user.password);
       if (comparePass) {
-        const accessJWT = await createAccessJWT(user.email)
-        const refreshJWT = await createRefreshJWT(user.email)
+        const jwts = await createJWTS(user.email)
         user.password = undefined;
+        user.refreshJWT = undefined;
         res.json({
           status: "success",
           message: "Logged in successfully",
-          accessJWT,
-          refreshJWT
+          user,
+          jwts
         });
         return;
       }
@@ -63,5 +73,13 @@ router.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post('/reset-password', async(req,res,next)=>{
+  const {email} = req.body;
+  const user  = await getAllUsers({email})
+  if(user?._id){
+   res.json({user})
+  }
+})
 
 export default router;

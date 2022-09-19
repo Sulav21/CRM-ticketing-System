@@ -23,3 +23,15 @@ Content-Type: application/json
     "email":"sulav5@yahoo.com",
     "password":"123456"
 }
+
+###
+POST http://localhost:8000/v1/user/reset-password
+Content-Type: application/json
+
+{
+    "email":"sulav5@yahoo.com"
+}
+
+###
+GET http://localhost:8000/v1/tokens
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzU1MTc1MSwiZXhwIjoxNjY2MTQzNzUxfQ.SxxMT6Lfc1CVvypOi1IT_Sp4tkbOEAon5rpmjMQbWW4

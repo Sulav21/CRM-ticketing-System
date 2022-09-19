@@ -28,6 +28,9 @@ app.use('/v1/user',userRouter)
 import ticketRouter from './router/ticketRouter.js'
 app.use('/v1/ticket',ticketRouter)
 
+// Tokens router
+import tokensRouter from './router/tokensRouter.js'
+app.use('/v1/tokens', tokensRouter)
 
 // Global error handling
 
