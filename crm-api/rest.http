@@ -1,5 +1,6 @@
 ###
 GET http://localhost:8000/v1/user
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzU1MDA5OCwiZXhwIjoxNjYzNTUwOTk4fQ.XzvUNzqsNDD14_TENmphidP8cV_-H85OlOwZNPqkR6Q
 
 ###
 POST http://localhost:8000/v1/user
