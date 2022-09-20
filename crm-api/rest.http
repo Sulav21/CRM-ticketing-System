@@ -64,3 +64,18 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlha
 GET http://localhost:8000/v1/ticket/632923a2a3ded7dd62001d4b
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzY0NDYzNSwiZXhwIjoxNjYzNjQ1NTM1fQ.gwjX82Z-7rBj5DoFNo1ZgyW0PQW3WnipIK114I0fWuI
 
+###
+PUT http://localhost:8000/v1/ticket/632923a2a3ded7dd62001d4b
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzY0NDYzNSwiZXhwIjoxNjYzNjQ1NTM1fQ.gwjX82Z-7rBj5DoFNo1ZgyW0PQW3WnipIK114I0fWuI
+
+{
+    "sender":"Michael",
+    "message":"This is taking way too long mate !"
+}
+
+###
+PATCH http://localhost:8000/v1/ticket/632923a2a3ded7dd62001d4b
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzY0NzU3MywiZXhwIjoxNjYzNjQ4NDczfQ.oZOJqkWwHryrANinh348i3APikc-LOKdwy6gLJ7PDmw
+
+
