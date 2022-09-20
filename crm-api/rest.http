@@ -52,9 +52,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlh
 ###
 POST http://localhost:8000/v1/ticket
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzY0MDgyMCwiZXhwIjoxNjYzNjQxNzIwfQ.Fw_MQK-_JQDFWDMeArjJ2U75_7LYZlEvL5m7TLfdkfk
 
 {
     "subject":"Form Issue",
     "sender":"Sulav",
     "message":"The form you submitted isnot working, try again later"
 }
+
+###
+GET http://localhost:8000/v1/ticket
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzY0MTgxMCwiZXhwIjoxNjYzNjQyNzEwfQ.za4nszHD3yxncGoMkzf6dLI3udEa3buRtKRpfjPJ2vo

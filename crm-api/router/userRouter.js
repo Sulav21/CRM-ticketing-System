@@ -2,9 +2,7 @@ import express from "express";
 import { comparePassword, PasswordHash } from "../helpers/bcryptHelper.js";
 import { otpNotification } from "../helpers/emailHelper.js";
 import {
-  createAccessJWT,
   createJWTS,
-  createRefreshJWT,
 } from "../helpers/jwt.helper.js";
 import { OtpGenerator } from "../helpers/randomGenerator.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
