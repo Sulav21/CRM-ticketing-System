@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "email":"sulav5@yahoo.com",
-    "password":"123456"
+    "password":"1234567"
 }
 
 ###
@@ -30,6 +30,16 @@ Content-Type: application/json
 
 {
     "email":"sulav5@yahoo.com"
+}
+
+###
+PATCH http://localhost:8000/v1/user/reset-password
+Content-Type: application/json
+
+{
+    "email":"sulav5@yahoo.com",
+    "password":"1234567",
+    "otp":"263496"
 }
 
 ###

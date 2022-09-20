@@ -8,8 +8,16 @@ import {
 } from "../helpers/jwt.helper.js";
 import { OtpGenerator } from "../helpers/randomGenerator.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
-import { insertSession } from "../models/sessions/sessions.Model.js";
-import { getAllUsers, getUser, insertUser } from "../models/user/user.Model.js";
+import {
+  deleteSession,
+  insertSession,
+} from "../models/sessions/sessions.Model.js";
+import {
+  getAllUsers,
+  getUser,
+  insertUser,
+  updateUser,
+} from "../models/user/user.Model.js";
 
 const router = express.Router();
 
@@ -104,6 +112,31 @@ router.post("/reset-password", async (req, res, next) => {
     res.json({
       status: "error",
       message: "Inavlid request",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch("/reset-password", async (req, res, next) => {
+  try {
+    const { otp, email, password } = req.body;
+    const session = await deleteSession({ token: otp, associate: email });
+    if (session?._id) {
+      const update = { password: PasswordHash(password) };
+      const updatedUser = await updateUser({ email }, update);
+      if (updatedUser?._id) {
+        return res.json({
+          status: "success",
+          message: "Your password has been updated",
+          user: updatedUser,
+        });
+      }
+    }
+
+    res.json({
+      status: "error",
+      message: "Invalid request, couldn't update user password",
     });
   } catch (error) {
     next(error);
