@@ -45,3 +45,16 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/v1/tokens
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzU1MTc1MSwiZXhwIjoxNjY2MTQzNzUxfQ.SxxMT6Lfc1CVvypOi1IT_Sp4tkbOEAon5rpmjMQbWW4
+
+
+############# Tickets #################
+
+###
+POST http://localhost:8000/v1/ticket
+Content-Type: application/json
+
+{
+    "subject":"Form Issue",
+    "sender":"Sulav",
+    "message":"The form you submitted isnot working, try again later"
+}

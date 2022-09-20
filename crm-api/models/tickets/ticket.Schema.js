@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ticketSchema = new mongoose.Schema({
   clientId: {
-    type: Schema.Types.ObjectId,
+    type:mongoose.ObjectId ,
   },
   subject: {
     type: String,
