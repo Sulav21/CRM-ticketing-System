@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const TicketTable = () => {
-const {tickets,isLoading,error} = useSelector(state=>state.tickets)
+
+const {searchTicketList,isLoading,error} = useSelector(state=>state.tickets)
 if(isLoading) return <h2>Loading ...</h2>
 if(error) return <h2>{error}</h2>
   return (
     <>
-      {!tickets.length ? (
+      {!searchTicketList.length ? (
         <>
           <p className="text-center fw-bold">No tickets to show</p> <hr />
         </>
@@ -24,9 +25,9 @@ if(error) return <h2>{error}</h2>
             </tr>
           </thead>
           <tbody>
-            {tickets.length &&
-              tickets.map((item) => (
-                <tr>
+            {searchTicketList.length &&
+              searchTicketList.map((item) => (
+                <tr key={item._id}>
                   <td>{item._id}</td>
                   <Link to={`/ticket/${item._id}`}>
                   <td>{item.subject}</td></Link>

@@ -25,7 +25,7 @@ export const fetchTickets = () => {
     url: TicketUrl,
     headers: {
       Authorization:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzcyMDgzMiwiZXhwIjoxNjYzNzIxNzMyfQ.acrQfRgrFRmjaBqF4Hz8vU9pW_76SIQPTip79kKQiNk",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoic3VsYXY1QHlhaG9vLmNvbSIsImlhdCI6MTY2MzcyNTM0MSwiZXhwIjoxNjYzODExNzQxfQ.WWPvb2vsKXK2M5T8oNpe_KnnjzTPaD8_WTHS9xIP4WU",
     },
   });
 };

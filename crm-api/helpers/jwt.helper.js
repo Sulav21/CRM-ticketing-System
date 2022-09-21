@@ -12,7 +12,7 @@ export const createJWTS = async (payload) => {
 };
 export const createAccessJWT = async (payload) => {
   const accessJWT = jwt.sign({ payload }, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "1d",
   });
   const obj = {
     token: accessJWT,

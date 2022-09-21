@@ -10,26 +10,12 @@ import { fetchAllTickets } from "./TicketAction";
 
 export const TicketList = () => {
   const dispatch = useDispatch()
-  const [str, setStr] = useState("");
 const {tickets} = useSelector(state=>state.tickets)
-  const [DisplayTicket, setDisplayTicket] = useState(tickets)
-
+ 
   useEffect(() => {
    dispatch(fetchAllTickets())
-  }, [str,DisplayTicket]);
+  }, [dispatch]);
 
-  const handleOnChange = (e) => {
-    const {value} = e.target
-    setStr(e.target.value);
-    searchTicket(value)
-  };
-
-  const searchTicket = sttr =>{
-   const filteredSearch = tickets.filter((item)=>{
-    return item.subject.toLowerCase().includes(sttr.toLowerCase())
-   })
-   setDisplayTicket(filteredSearch)
-  }
   return (
     <Container>
       <Row>
@@ -42,13 +28,13 @@ const {tickets} = useSelector(state=>state.tickets)
         <Link to='/add-ticket'>  <Button variant="info">Add New Ticket</Button></Link>
         </Col>
         <Col className="text-end">
-          <SearchForm handleOnChange={handleOnChange} str={str} />
+          <SearchForm  />
         </Col>
       </Row>
       <hr/>
       <Row>
         <Col>
-        <TicketTable tickets={DisplayTicket}/>
+        <TicketTable/>
         </Col>
       
       </Row>
