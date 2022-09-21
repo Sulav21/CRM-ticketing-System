@@ -1,8 +1,12 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const TicketTable = ({ tickets }) => {
+export const TicketTable = () => {
+const {tickets,isLoading,error} = useSelector(state=>state.tickets)
+if(isLoading) return <h2>Loading ...</h2>
+if(error) return <h2>{error}</h2>
   return (
     <>
       {!tickets.length ? (
@@ -23,11 +27,11 @@ export const TicketTable = ({ tickets }) => {
             {tickets.length &&
               tickets.map((item) => (
                 <tr>
-                  <td>{item.id}</td>
-                  <Link to={`/ticket/${item.id}`}>
+                  <td>{item._id}</td>
+                  <Link to={`/ticket/${item._id}`}>
                   <td>{item.subject}</td></Link>
                   <td>{item.status}</td>
-                  <td>{item.date}</td>
+                  <td>{item.openAt}</td>
                 </tr>
               ))}
           </tbody>

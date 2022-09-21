@@ -3,14 +3,19 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { BreadCrumbComp } from "../../components/breadcrumb/BreadCrumbComp";
 import { SearchForm } from "../../components/search-form/SearchForm";
 import { TicketTable } from "../../ticket-table/TicketTable";
-import tickets from '../../dummy-data/dummy-table.json'
+// import tickets from '../../dummy-data/dummy-table.json'
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux'
+import { fetchAllTickets } from "./TicketAction";
 
 export const TicketList = () => {
+  const dispatch = useDispatch()
   const [str, setStr] = useState("");
+const {tickets} = useSelector(state=>state.tickets)
   const [DisplayTicket, setDisplayTicket] = useState(tickets)
 
   useEffect(() => {
+   dispatch(fetchAllTickets())
   }, [str,DisplayTicket]);
 
   const handleOnChange = (e) => {
