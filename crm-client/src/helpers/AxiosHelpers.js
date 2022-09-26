@@ -30,19 +30,32 @@ export const fetchTickets = () => {
   });
 };
 
-export const loginUser=(dataObj)=>{
+export const loginUser = (dataObj) => {
   return apiProcessor({
-    method:'post',
-    url:UserURl+'/login',
-   dataObj
-  })
-}
+    method: "post",
+    url: UserURl + "/login",
+    dataObj,
+  });
+};
 
-export const getUser=()=>{
+export const getUser = () => {
   return apiProcessor({
-    method:"get",
-    url:UserURl,
-    headers:{
-      Authorization:sessionStorage.getItem('accessJWT')}
-  })
-}
+    method: "get",
+    url: UserURl,
+    headers: {
+      Authorization: sessionStorage.getItem("accessJWT"),
+    },
+  });
+};
+
+export const getNewAccessToken = async () => {
+  const result = await apiProcessor({
+    method: "get",
+    url: TokenUrl,
+    headers: {
+      Authorization: localStorage.getItem("refreshJWT"),
+    },
+  });
+  result.status === "success" &&
+    sessionStorage.setItem("accessJWT", result.newAccessJwt);
+};
