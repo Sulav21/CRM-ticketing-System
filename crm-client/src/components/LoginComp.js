@@ -4,6 +4,7 @@ import { Container, Row, Col, Form,Button,Spinner,Alert } from "react-bootstrap"
 import {loginPending,loginSuccess,loginFailed} from '../pages/login/LoginSlice.js'
 import { loginUser } from "../helpers/AxiosHelpers.js";
 import {useNavigate} from 'react-router-dom'
+import { getUserProfile } from "../pages/dashboard/userAction.js";
 
 const initialData = {
     email:"",
@@ -26,7 +27,7 @@ const {isLoading,isAuth,error} = useSelector(state=>state.login)
         dispatch(loginPending())
         try {
         const result = await (loginUser(formDt))
-       console.log(result)
+      
         if(result.status='error'){
           dispatch(loginFailed(result.message))
         }
@@ -35,6 +36,7 @@ const {isLoading,isAuth,error} = useSelector(state=>state.login)
         sessionStorage.setItem('accessJWT',result.jwts.accessJWT)
         localStorage.setItem('refreshJWT',result.jwts.refreshJWT)
         dispatch(loginSuccess())
+        dispatch(getUserProfile())
         navigate('/dashboard')
 
       }

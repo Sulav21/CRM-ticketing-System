@@ -37,3 +37,12 @@ export const loginUser=(dataObj)=>{
    dataObj
   })
 }
+
+export const getUser=()=>{
+  return apiProcessor({
+    method:"get",
+    url:UserURl,
+    headers:{
+      Authorization:sessionStorage.getItem('accessJWT')}
+  })
+}

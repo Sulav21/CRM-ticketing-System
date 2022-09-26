@@ -21,9 +21,9 @@ export const authMiddleware = async (req, res, next) => {
         if (checkInDb?._id) {
            
           const admin = await getAllUsers({ email: isValid.payload });
-       
+          const {_id,email,name} = admin
           if(admin?._id){
-           req.userInfo = admin
+           req.userInfo = {_id,email,name}
             return next();
           }
         

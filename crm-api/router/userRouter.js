@@ -22,6 +22,7 @@ const router = express.Router();
 router.get("/", authMiddleware, (req, res, next) => {
   try {
     res.json({
+      status:'success',
       message: req.userInfo,
     });
   } catch (error) {
