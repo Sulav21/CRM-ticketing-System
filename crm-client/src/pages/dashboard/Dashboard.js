@@ -6,7 +6,7 @@ import tickets from '../../dummy-data/dummy-table.json'
 import { Link } from 'react-router-dom'
 
 export const Dashboard = () => {
-  
+   
   return (
     <Container>
         <Row>
@@ -16,7 +16,7 @@ export const Dashboard = () => {
         </Row>
         <Row>
             <Col className='text-center mt-5 mb-2'>
-           <Link to='/add-ticket'> <Button variant='info'  style={{"font-size":'2rem',"color":"black","padding":"6px 20px"}}>Add New Ticket</Button></Link>
+           <Link to='/add-ticket'> <Button variant='info' style={{"font-size":'2rem',"color":"black","padding":"6px 20px"}}>Add New Ticket</Button></Link>
             </Col>
         </Row>
         <Row>

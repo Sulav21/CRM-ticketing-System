@@ -10,6 +10,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const logout = () => {
     sessionStorage.removeItem('accessJWT')
+    localStorage.removeItem('refreshJWT')
     navigate("/");
   };
   return (

@@ -18,7 +18,7 @@ const {isLoading,isAuth,error} = useSelector(state=>state.login)
 
 useEffect(() => {
  (sessionStorage.getItem('accessJWT')) && navigate('/dashboard')
-}, [navigate])
+}, [navigate,isAuth])
 
     const handleOnChange=(e)=>{
         const {name,value} = e.target
