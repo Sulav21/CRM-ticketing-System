@@ -1,13 +1,19 @@
 import React,{useState} from "react";
-import { Container, Row, Col, Form,Button } from "react-bootstrap";
+import {useDispatch,useSelector} from 'react-redux'
+import { Container, Row, Col, Form,Button,Spinner,Alert } from "react-bootstrap";
+import {loginPending,loginSuccess,loginFailed} from '../pages/login/LoginSlice.js'
+import { loginUser } from "../helpers/AxiosHelpers.js";
+import {useNavigate} from 'react-router-dom'
 
 const initialData = {
     email:"",
     password:""
 }
 export const LoginComp = ({handleOnClick}) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
     const [formDt, setFormDt] = useState(initialData)
-
+const {isLoading,isAuth,error} = useSelector(state=>state.login)
     const handleOnChange=(e)=>{
         const {name,value} = e.target
         setFormDt({
@@ -15,10 +21,27 @@ export const LoginComp = ({handleOnClick}) => {
             [name]:value
         })
     }
-    const handleOnSubmit=e=>{
+    const handleOnSubmit=async(e)=>{
         e.preventDefault()
-    //   Call axios
-        console.log(formDt)
+        dispatch(loginPending())
+        try {
+        const result = await (loginUser(formDt))
+       console.log(result)
+        if(result.status='error'){
+          dispatch(loginFailed(result.message))
+        }
+       
+      if(result.status='success'){
+        sessionStorage.setItem('accessJWT',result.jwts.accessJWT)
+        localStorage.setItem('refreshJWT',result.jwts.refreshJWT)
+        dispatch(loginSuccess())
+        navigate('/dashboard')
+
+      }
+     
+      } catch (error) {
+          dispatch(loginFailed(error.message))
+        }
        
     }
   return (
@@ -27,6 +50,7 @@ export const LoginComp = ({handleOnClick}) => {
         <Col>
           <h1>Client Login</h1>
           <hr />
+          {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleOnSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -39,8 +63,9 @@ export const LoginComp = ({handleOnClick}) => {
             </Form.Group>
       
             <Button variant="primary" type="submit">
-              Submit
+              Login
             </Button>
+            {isLoading && <Spinner variant='primary' animation="border" />}
           </Form>
           <hr/>
         </Col>

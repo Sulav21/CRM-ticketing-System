@@ -29,3 +29,11 @@ export const fetchTickets = () => {
     },
   });
 };
+
+export const loginUser=(dataObj)=>{
+  return apiProcessor({
+    method:'post',
+    url:UserURl+'/login',
+   dataObj
+  })
+}
